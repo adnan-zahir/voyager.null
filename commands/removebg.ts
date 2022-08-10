@@ -6,7 +6,6 @@ import {
 } from 'discord.js';
 import FormData from 'form-data';
 import fs from 'fs';
-const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -50,10 +49,7 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle('Background removed!')
         .setImage(`attachment://${filename}`);
-      await interaction.deferReply();
-      await wait(4000);
-      await interaction.channel.send({ embeds: [embed], files: [file] });
-      await interaction.editReply('Done!');
+      await interaction.reply({ embeds: [embed], files: [file] });
       console.log(file);
     } catch (error) {
       console.error('Request failed: ', error);

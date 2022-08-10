@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, Routes } from 'discord.js';
+import { Routes } from 'discord.js';
 import { REST } from '@discordjs/rest';
 import fs from 'fs';
 import path from 'path';

@@ -1,5 +1,4 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,8 +20,6 @@ module.exports = {
     try {
       // change username
       // check if user has nickname in guild
-      await interaction.deferReply();
-      await wait(4000);
       if (!nickname === null) {
         if (!nickname.startsWith('(AFK)')) {
           await member.setNickname(`(AFK) ${nickname}`);
@@ -37,8 +34,7 @@ module.exports = {
         .setDescription(`${tag}\n${reason !== null ? `Reason: ${reason}` : ''}`)
         .setThumbnail(defaultAvatarURL)
         .setColor('#ff0000');
-      await interaction.channel.send({ embeds: [embed] });
-      await interaction.editReply('Done');
+      await interaction.reply({ embeds: [embed] });
     } catch (error) {
       console.error(error);
     }

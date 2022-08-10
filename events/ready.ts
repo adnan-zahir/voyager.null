@@ -3,6 +3,6 @@ module.exports = {
   once: true,
   execute(client: any) {
     console.log('Bot is ready!');
-    client.user.setActivity('working on /check game command');
+    client.user.setActivity('REPORT BUG TO MODS OR DEVELOPERS ');
   },
 };

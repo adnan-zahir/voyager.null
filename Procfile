@@ -1,0 +1,1 @@
+worker: ts-node deploy-commands.ts && ts-node index.ts

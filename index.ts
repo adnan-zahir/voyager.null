@@ -1,6 +1,11 @@
 // dependencies
 // import { Client, GatewayIntentBits as intents, Collection } from 'discord.js';
-const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const {
+  Client,
+  GatewayIntentBits,
+  Collection,
+  // Partials,
+} = require("discord.js");
 import path from "path";
 import fs from "fs";
 require("dotenv").config();
@@ -12,7 +17,10 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildPresences,
     GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
   ],
+  // partials: [Partials.Message, Partials.Channel, Partials.Reaction],
+  partials: ["MESSAGE", "CHANNEL", "REACTION", "USER"],
 });
 
 const afks: string[] = [];

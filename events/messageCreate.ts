@@ -63,15 +63,19 @@ module.exports = {
     }
 
     // Member verifiaction automation using reaction
-    if (message.channel.id == "865421061893652500") {
+    const introChannelId = "1116275978897985589";
+    if (message.channel.id == introChannelId) {
       // Testing channel
       // If the author is a newcomer
       const authorId = message.author.id;
-      const authorAsMember = message.guild.members.fetch(authorId);
-      const authorRoles = authorAsMember.roles;
-      console.log(`Roles: ${authorRoles}`);
-      // Add reaction
-      message.react("🕴");
+      const authorAsMember = await message.guild.members.fetch(authorId);
+      const authorRoles = authorAsMember.roles.cache;
+      const newcomer = authorRoles.size == 1;
+
+      if (newcomer) {
+        // Add reaction
+        message.react("🕴");
+      }
     }
   },
 };

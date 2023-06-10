@@ -76,5 +76,29 @@ module.exports = {
         message.react("🕴");
       }
     }
+
+    // Say command
+    if (message.content.split(" ")[0] == "^say") {
+      const ownerRoleId = "865074331154120745";
+      const adminRoleId = "865258585935577098";
+      const authorizedRoleIds = [ownerRoleId, adminRoleId];
+      const { content, channel, author } = message;
+
+      // Remove the prefix
+      const text = content.substr(content.indexOf(" ") + 1);
+
+      // Check if the reactor is authorized
+      const authorAsMember = await message.guild.members.fetch(author.id);
+      const authorRoles = authorAsMember.roles.cache;
+      let isAuthorized = false;
+      for (const [roleId, _] of authorRoles) {
+        if (authorizedRoleIds.includes(roleId)) isAuthorized = !isAuthorized;
+      }
+
+      if (isAuthorized) {
+        message.delete();
+        channel.send(text);
+      }
+    }
   },
 };

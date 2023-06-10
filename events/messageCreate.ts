@@ -65,7 +65,6 @@ module.exports = {
     // Member verifiaction automation using reaction
     const introChannelId = "1116275978897985589";
     if (message.channel.id == introChannelId) {
-      // Testing channel
       // If the author is a newcomer
       const authorId = message.author.id;
       const authorAsMember = await message.guild.members.fetch(authorId);

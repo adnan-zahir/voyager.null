@@ -20,7 +20,7 @@ module.exports = {
         const post = guild.channels.cache.get(postId);
 
         if (!post) return;
-        if (embeds.size >= 1) return;
+        if (!embeds[0]) return;
         console.log("Has embed!");
         console.log(embeds[0]);
         if (!embeds[0].title) return;

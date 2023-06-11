@@ -1,14 +1,14 @@
-import { Routes } from 'discord.js';
-import { REST } from '@discordjs/rest';
-import fs from 'fs';
-import path from 'path';
-require('dotenv').config();
+import { Routes } from "discord.js";
+import { REST } from "@discordjs/rest";
+import fs from "fs";
+import path from "path";
+require("dotenv").config();
 
 const commands: any = [];
-const commandsPath = path.join(__dirname, 'commands');
+const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
   .readdirSync(commandsPath)
-  .filter((file) => file.endsWith('.ts'));
+  .filter((file) => file.endsWith(".ts"));
 
 commandFiles.forEach((file) => {
   const filePath = path.join(commandsPath, file);
@@ -16,7 +16,7 @@ commandFiles.forEach((file) => {
   commands.push(command.data.toJSON());
 });
 
-const rest = new REST({ version: '10' }).setToken(process.env.TOKEN!);
+const rest = new REST({ version: "10" }).setToken(process.env.TOKEN!);
 
 rest
   .put(
@@ -28,5 +28,5 @@ rest
       body: commands,
     }
   )
-  .then(() => console.log('Sucsessfully registered commands!'))
+  .then(() => console.log("Sucsessfully registered commands!"))
   .catch(console.error);
